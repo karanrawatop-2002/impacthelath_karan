@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Form</title>
+</head>
+<body>
+
+  <h2>Day Selection Form</h2>
+
+  <label>Name:</label>
+  <input type="text" id="name">
+  <br><br>
+
+  <label>Address:</label>
+  <input type="text" id="address">
+  <br><br>
+
+  <label>Select Day:</label>
+  <select id="day">
+    <option value="">Select</option>
+    <option value="Monday">Monday</option>
+    <option value="Tuesday">Tuesday</option>
+    <option value="Wednesday">Wednesday</option>
+    <option value="Thursday">Thursday</option>
+    <option value="Friday">Friday</option>
+    <option value="Saturday">Saturday</option>
+    <option value="Sunday">Sunday</option>
+  </select>
+
+  <br><br>
+
+  <button onclick="saveData()">Save</button>
+
+  <h3>Saved Data:</h3>
+  <p id="output"></p>
+
+  <script>
+    function saveData() {
+      let name = document.getElementById("name").value;
+      let address = document.getElementById("address").value;
+      let day = document.getElementById("day").value;
+
+      if (name == "" || address == "" || day == "") {
+        alert("Please fill all details");
+        return;
+      }
+
+      localStorage.setItem("Name", name);
+      localStorage.setItem("Address", address);
+      localStorage.setItem("Day", day);
+
+      document.getElementById("output").innerHTML =
+        "Name: " + name + "<br>" +
+        "Address: " + address + "<br>" +
+        "Day: " + day;
+    }
+
+    // Page load par saved data show karega
+    let savedName = localStorage.getItem("Name");
+    let savedAddress = localStorage.getItem("Address");
+    let savedDay = localStorage.getItem("Day");
+
+    if (savedName && savedAddress && savedDay) {
+      document.getElementById("output").innerHTML =
+        "Name: " + savedName + "<br>" +
+        "Address: " + savedAddress + "<br>" +
+        "Day: " + savedDay;
+    }
+  </script>
+
+</body>
+</html>
